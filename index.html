@@ -3,27 +3,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RooferNear.me | Your Local Roofing Experts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RooferNear.me | Trusted Roofing Contractor Matchmaking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f9f9;
+      color: #1e2a38;
+    }
+    header {
+      background: url('https://via.placeholder.com/1600x800?text=Roofing+Hero+Image') center/cover no-repeat;
+      text-align: center;
+      padding: 100px 20px 80px;
+      color: white;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+      color: #007BFF;
+    }
+    .cta {
+      background-color: #F96302;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .form-section {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Need a Roof Repair or Replacement?</h1>
-    <p>Get Matched with a Trusted Roofing Contractor In Your Area</p>
-    <a href="tel:+18001234567">📞 Call Now: (800) 123-4567</a>
-  </header>
 
-  <section>
-    <h2>Request a Free Quote</h2>
-    <form action="https://formspree.io/f/exampleformid" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required><br>
-      <input type="email" name="email" placeholder="Your Email" required><br>
-      <textarea name="message" placeholder="Tell us about your roofing needs..." required></textarea><br>
-      <button type="submit">Submit Request</button>
-    </form>
-  </section>
+<header>
+  <h1>Need a Roof Repair or Replacement?</h1>
+  <p>Get Matched with a Trusted Roofing Contractor In Your Area</p>
+  <a href="#quote-form"><button class="cta">Request a Free Quote</button></a>
+</header>
 
-  <footer>
-    <p>© RooferNear.me. Powered by BuildMaster.</p>
-  </footer>
+<section class="form-section" id="quote-form">
+  <h2>Request Your Free Roofing Quote</h2>
+  <form action="https://formspree.io/f/exampleformid" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <textarea name="message" placeholder="Tell us about your roofing needs..." required></textarea>
+    <button type="submit">Get My Free Estimate</button>
+  </form>
+</section>
+
+<footer>
+  © 2025 RooferNear.me. Powered by BuildMaster.
+</footer>
+
 </body>
 </html>
