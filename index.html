@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RooferNear.me | Trusted Roofing Contractor Matchmaking</title>
+  <title>RooferNear.me | Alberta Roofing Contractor Matchmaking</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
@@ -14,14 +14,27 @@
       color: #1e2a38;
     }
     header {
-      background: url('https://via.placeholder.com/1600x800?text=Roofing+Hero+Image') center/cover no-repeat;
+      background: url('https://via.placeholder.com/1600x800?text=Roof+Hero+Image') center/cover no-repeat;
       text-align: center;
       padding: 100px 20px 80px;
       color: white;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 0;
+    }
+    header h1, header p, header a {
+      position: relative;
+      z-index: 1;
     }
     h1 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.7rem;
+      margin-bottom: 10px;
     }
     h2 {
       font-size: 1.8rem;
@@ -62,6 +75,12 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    .trust-strip {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 20px;
+      color: #555;
+    }
     footer {
       text-align: center;
       padding: 20px;
@@ -73,8 +92,8 @@
 <body>
 
 <header>
-  <h1>Need a Roof Repair or Replacement?</h1>
-  <p>Get Matched with a Trusted Roofing Contractor In Your Area</p>
+  <h1>Need Roof Repairs in Alberta?</h1>
+  <p>We match homeowners with trusted local contractors — fast, free, no obligation.</p>
   <a href="#quote-form"><button class="cta">Request a Free Quote</button></a>
 </header>
 
@@ -87,6 +106,9 @@
     <textarea name="message" placeholder="Tell us about your roofing needs..." required></textarea>
     <button type="submit">Get My Free Estimate</button>
   </form>
+  <div class="trust-strip">
+    ✅ Licensed & Insured&nbsp;&nbsp; ⭐ 4.9 Rated by Homeowners&nbsp;&nbsp; 📍 Serving Calgary, Edmonton, Red Deer
+  </div>
 </section>
 
 <footer>
