@@ -25,7 +25,6 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(1px);
       z-index: 0;
     }
     header h1, header p, header a {
@@ -35,11 +34,11 @@
     h1 {
       font-family: 'Montserrat', sans-serif;
       font-size: 2.7rem;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
     }
     h2 {
       font-size: 1.8rem;
-      color: #1e2a38; /* dark slate/navy*/
+      color: #1e2a38;
     }
     .cta {
       background-color: #F96302;
@@ -51,10 +50,6 @@
       cursor: pointer;
       margin-top: 20px;
     }
-    .cta:hover {
-      background-color: #e55000;
-      transition: background-color 0.3s ease;
-    }
     .form-section {
       padding: 40px 20px;
       max-width: 600px;
@@ -63,7 +58,7 @@
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
-    form input, form textarea {
+    form input, form textarea, form select {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
@@ -86,6 +81,9 @@
       margin-top: 20px;
       color: #555;
     }
+    .honeypot {
+      display: none;
+    }
     footer {
       text-align: center;
       padding: 20px;
@@ -105,9 +103,22 @@
 <section class="form-section" id="quote-form">
   <h2>Request Your Free Roofing Quote</h2>
   <form action="https://formspree.io/f/exampleformid" method="POST">
+    <!-- Honeypot field -->
+    <div class="honeypot">
+      <label>Leave this field empty if you're human: <input type="text" name="_gotcha"></label>
+    </div>
+    
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
+
+    <select name="urgency" required>
+      <option value="">How soon do you need the work done?</option>
+      <option value="asap">ASAP (1 week)</option>
+      <option value="soon">Soon (2–4 weeks)</option>
+      <option value="planning">Just planning / Budgeting</option>
+    </select>
+
     <textarea name="message" placeholder="Tell us about your roofing needs..." required></textarea>
     <button type="submit">Get My Free Estimate</button>
   </form>
