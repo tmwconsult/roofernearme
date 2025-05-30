@@ -114,13 +114,38 @@
 
   <!-- Text content -->
   <div class="relative z-10 text-center text-white px-4 pt-28">
-    <h1 class="text-4xl font-bold mb-4">Protect Your #1 Investment</h1>
-    <p class="text-lg mb-6">Get a full roof report and transparent quote from trusted Alberta contractors — no pressure, no hassle.</p>
+    <h1 class="text-4xl font-bold mb-4 opacity-0 animate-fade-in">Protect Your #1 Investment</h1>
+    <p class="text-lg mb-6 opacity-0 animate-fade-in animation-delay-200">Get a full roof report and transparent quote from trusted Alberta contractors — no pressure, no hassle.</p>
     <a href="#quote-form">
       <button class="cta bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-md shadow transition">Get My Free Roof Report</button>
     </a>
+
+    <!-- Trust badges -->
+    <div class="mt-6 flex justify-center gap-4 text-sm text-white opacity-90">
+      <span>✅ Licensed & Insured</span>
+      <span>⭐ 4.9 Rated on BBB</span>
+      <span>📍 Serving Alberta</span>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="text-center mt-6">
+      <a href="#quote-form" class="inline-block animate-bounce text-white text-2xl">↓</a>
+    </div>
   </div>
 </header>
+
+<style>
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+</style>
 
 <section class="bg-white py-12 px-6 max-w-xl mx-auto" id="quote-form">
  <div class="max-w-xl mx-auto px-4">
