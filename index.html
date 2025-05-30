@@ -110,7 +110,14 @@
     
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <input 
+      type="tel" 
+      name="phone" 
+      placeholder="+1 403-555-1234" 
+      pattern="^\+[1-9]\d{7,14}$" 
+      required 
+      title="Please enter your phone number starting with + and country code">
+
 
     <select name="urgency" required>
       <option value="">How soon do you need the work done?</option>
