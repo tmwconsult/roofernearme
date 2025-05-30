@@ -117,12 +117,55 @@
     </a>
 
     <!-- Trust badges -->
-    <div class="mt-6 flex justify-center gap-6 text-sm text-white opacity-90">
+    <div class="mt-6 flex justify-center gap-6 text-sm text-white opacity-90 fade-in-on-scroll">
       <span class="fade-item delay-0">✅ Licensed & Insured</span>
       <span class="fade-item delay-200">⭐ 4.9 Rated on BBB</span>
       <span class="fade-item delay-400">📍 Serving Alberta</span>
     </div>
-    
+
+    <!-- Scroll indicator -->
+    <div class="text-center mt-6">
+      <a href="#quote-form" class="inline-block animate-bounce text-white text-3xl md:text-2xl">↓</a>
+    </div>
+  </div>
+</header>
+
+<!-- Testimonial Carousel -->
+<section class="max-w-2xl mx-auto mt-12 px-4 bg-gradient-to-br from-slate-50 to-slate-100 py-10 rounded-lg shadow">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide text-center">
+        <p class="italic text-lg">“Super smooth experience. I got my roof report the next day and the quote was super clear. Zero pressure.”</p>
+        <p class="mt-2 font-medium text-sm">⭐️⭐️⭐️⭐️⭐️ Amanda L., Airdrie</p>
+      </div>
+      <div class="swiper-slide text-center">
+        <p class="italic text-lg">“Clear communication, no surprises, and their report made everything easy to understand.”</p>
+        <p class="mt-2 font-medium text-sm">⭐️⭐️⭐️⭐️⭐️ Jordan M., Calgary</p>
+      </div>
+      <div class="swiper-slide text-center">
+        <p class="italic text-lg">“I was skeptical, but this was smoother than any contractor experience I’ve had. 10/10.”</p>
+        <p class="mt-2 font-medium text-sm">⭐️⭐️⭐️⭐️⭐️ Vanessa D., Red Deer</p>
+      </div>
+    </div>
+    <div class="swiper-pagination mt-4 !bottom-0"></div>
+  </div>
+</section>
+
+<!-- SwiperJS CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.swiper-container', {
+    loop: true,
+    autoplay: { delay: 5000 },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+</script>
+
+<!-- Animation styles -->
 <style>
 @keyframes fade-up {
   0% { opacity: 0; transform: translateY(10px); }
@@ -135,16 +178,7 @@
 .delay-0 { animation-delay: 0.2s; }
 .delay-200 { animation-delay: 0.4s; }
 .delay-400 { animation-delay: 0.6s; }
-</style>
 
-    <!-- Scroll indicator -->
-    <div class="text-center mt-6">
-      <a href="#quote-form" class="inline-block animate-bounce text-white text-3xl md:text-2xl">↓</a>
-    </div>
-  </div>
-</header>
-
-<style>
 @keyframes fade-in {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -155,7 +189,39 @@
 .animation-delay-200 {
   animation-delay: 0.2s;
 }
+
+/* Scroll-triggered fade-in */
+.fade-in-on-scroll {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(20px);
+}
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.swiper-pagination-bullet {
+  background-color: #e0e0e0;
+  opacity: 1;
+  transition: background-color 0.3s;
+}
+.swiper-pagination-bullet-active {
+  background-color: #fb923c; /* orange-400 */
+}
 </style>
+
+<script>
+  const fadeEls = document.querySelectorAll('.fade-in-on-scroll');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  fadeEls.forEach(el => observer.observe(el));
+</script>
 
 <section class="bg-white py-12 px-6 max-w-xl mx-auto" id="quote-form">
  <div class="max-w-xl mx-auto px-4">
