@@ -273,42 +273,84 @@
   fadeEls.forEach(el => observer.observe(el));
 </script>
 
-<section class="bg-white py-12 px-6 max-w-xl mx-auto" id="quote-form">
- <div class="max-w-xl mx-auto px-4">
-  <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Request Your Free Roofing Quote</h2>
-  <form action="https://script.google.com/macros/s/AKfycbxjIusxbbLum-2gUW1ATvN7OL3K_mn-HodVT683rxDvLeUu5M7MSrI-5NJ67ghYMbVWMA/exec" method="POST" class="space-y-6 bg-gray-50 p-6 rounded-xl shadow-md">
-    <div class="honeypot hidden">
-      <label>Leave this field empty if you're human: <input type="text" name="_gotcha"></label>
+<section id="quote-form" class="form-section max-w-xl mx-auto mt-10 px-4">
+  <h2 class="text-2xl font-bold mb-4 text-center">Request Your Free Roofing Quote</h2>
+  <form id="roof-form" onsubmit="handleSubmit(event)">
+    <!-- Honeypot field -->
+    <div class="honeypot">
+      <label class="hidden">Leave this field empty if you're human: <input type="text" name="_gotcha"></label>
     </div>
 
-    <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border rounded-lg" />
-    <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 border rounded-lg" />
-    <input 
-      type="tel" 
-      name="phone" 
-      placeholder="+1 403-555-1234" 
-      pattern="^\+?[0-9\s\-().]{10,}$" 
-      title="Please include your country code (e.g. +1) and at least 10 digits"
-      required 
-      class="w-full p-3 border rounded-lg" />
+    <input type="text" name="name" placeholder="Your Name" required class="w-full mb-4 px-3 py-2 border border-gray-300 rounded">
+    <input type="email" name="email" placeholder="Your Email" required class="w-full mb-4 px-3 py-2 border border-gray-300 rounded">
+    <input type="tel" name="phone" placeholder="Phone Number" required class="w-full mb-4 px-3 py-2 border border-gray-300 rounded">
 
-
-    <select name="urgency" required class="w-full p-3 border rounded-lg">
+    <select name="urgency" required class="w-full mb-4 px-3 py-2 border border-gray-300 rounded">
       <option value="">How soon do you need the work done?</option>
       <option value="asap">ASAP (1 week)</option>
       <option value="soon">Soon (2–4 weeks)</option>
       <option value="planning">Just planning / Budgeting</option>
     </select>
 
-    <textarea name="message" placeholder="What kind of roof work are you considering?" rows="4" required class="w-full p-3 border rounded-lg"></textarea>
-    <button type="submit" class="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700 transition">Get My Custom Roof Report</button>
-  </form>
+    <textarea name="message" placeholder="Tell us about your roofing needs..." required class="w-full mb-4 px-3 py-2 border border-gray-300 rounded"></textarea>
 
-  <section class="max-w-xl mx-auto mt-12 text-center text-gray-700 px-4">
-  <p class="text-lg italic">“Super smooth experience. I got my roof report the next day and the quote was super clear. Zero pressure.”</p>
-  <p class="mt-2 font-medium text-sm">⭐️⭐️⭐️⭐️⭐️ Amanda L., Airdrie</p>
- </div>
+    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded text-lg font-semibold">Get My Free Estimate</button>
+  </form>
+  <div class="trust-strip text-center text-sm text-gray-600 mt-4">
+    ✅ Licensed & Insured &nbsp;&nbsp; ⭐ 4.9 Rated by Homeowners &nbsp;&nbsp; 📍 Serving Calgary, Edmonton, Red Deer
+  </div>
 </section>
+
+<script>
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = document.getElementById('roof-form');
+    const data = new FormData(form);
+
+    fetch("https://script.google.com/macros/s/AKfycbxjIusxbbLum-2gUW1ATvN7OL3K_mn-HodVT683rxDvLeUu5M7MSrI-5NJ67ghYMbVWMA/exec", {
+      method: 'POST',
+      body: data
+    }).then(response => {
+      document.getElementById('quote-form').innerHTML = `
+        <div class="text-center p-8 bg-white rounded-lg shadow-md fade-in-on-scroll">
+          <svg class="mx-auto mb-4 w-16 h-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <h2 class="text-2xl font-bold mb-2 text-green-600">Thanks for submitting!</h2>
+          <p class="text-gray-700 mb-4">Your roof report request is being reviewed. One of our trusted Alberta contractors will follow up within 24 hours.</p>
+          <p class="text-sm text-gray-500 italic mb-6">We appreciate the opportunity to help protect your home.</p>
+          <div class="bg-slate-50 p-4 rounded-lg">
+            <p class="text-sm text-gray-700 mb-2 font-semibold">🎁 Invite a friend and get a gift card when they book an inspection!</p>
+            <input type="text" readonly onclick="this.select()" class="w-full text-sm border px-2 py-1 rounded bg-white text-gray-600 cursor-pointer" value="https://roofinspections.ca/referral?code=FRIEND-BONUS">
+          </div>
+        </div>`;
+      launchConfetti();
+    }).catch(error => {
+      alert('There was an issue with your submission. Please try again.');
+    });
+  }
+
+  function launchConfetti() {
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+      const particleCount = 50 * (timeLeft / duration);
+      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+    }, 250);
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   
   <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm text-gray-600 text-center">
