@@ -115,9 +115,11 @@
       type="tel" 
       name="phone" 
       placeholder="+1 403-555-1234" 
-      pattern="^\+[1-9]\d{7,14}$" 
-      title="Please enter your phone number starting with + and country code"
-      required class="w-full p-3 border rounded-lg" />
+      pattern="^\+?[0-9\s\-().]{10,}$" 
+      title="Please include your country code (e.g. +1) and at least 10 digits"
+      required 
+      class="w-full p-3 border rounded-lg" />
+
 
     <select name="urgency" required class="w-full p-3 border rounded-lg">
       <option value="">How soon do you need the work done?</option>
@@ -130,9 +132,12 @@
     <button type="submit" class="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700 transition">Get My Free Estimate</button>
   </form>
 
-  <div class="text-center text-sm text-gray-600 mt-6">
-    ✅ Licensed & Insured &nbsp;&nbsp; ⭐ 4.9 Rated by Homeowners &nbsp;&nbsp; 📍 Serving Calgary, Edmonton, Red Deer
+  <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm text-gray-600 text-center">
+    <span>✅ Licensed & Insured</span>
+    <span>⭐ 4.9 Rated by Homeowners</span>
+    <span>📍 Serving Calgary, Edmonton, Red Deer</span>
   </div>
+
 </section>
 
 
