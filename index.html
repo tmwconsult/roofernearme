@@ -14,18 +14,14 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <style>
+    html {
+  scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
       background-color: #f9f9f9;
       color: #1e2a38;
-    }
-    header {
-      background: url('assets/roof copy 4.PNG') center/cover no-repeat;
-      text-align: center;
-      padding: 100px 20px 80px;
-      color: white;
-      position: relative;
     }
     header::after {
       content: "";
@@ -121,11 +117,25 @@
     </a>
 
     <!-- Trust badges -->
-    <div class="mt-6 flex justify-center gap-4 text-sm text-white opacity-90">
-      <span>✅ Licensed & Insured</span>
-      <span>⭐ 4.9 Rated on BBB</span>
-      <span>📍 Serving Alberta</span>
+    <div class="mt-6 flex justify-center gap-6 text-sm text-white opacity-90">
+      <span class="fade-item delay-0">✅ Licensed & Insured</span>
+      <span class="fade-item delay-200">⭐ 4.9 Rated on BBB</span>
+      <span class="fade-item delay-400">📍 Serving Alberta</span>
     </div>
+    
+<style>
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.fade-item {
+  opacity: 0;
+  animation: fade-up 0.6s ease-out forwards;
+}
+.delay-0 { animation-delay: 0.2s; }
+.delay-200 { animation-delay: 0.4s; }
+.delay-400 { animation-delay: 0.6s; }
+</style>
 
     <!-- Scroll indicator -->
     <div class="text-center mt-6">
