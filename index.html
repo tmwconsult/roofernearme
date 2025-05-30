@@ -54,6 +54,15 @@
       cursor: pointer;
       margin-top: 20px;
     }
+    .fade-in-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .form-section {
       padding: 40px 20px;
       max-width: 600px;
@@ -351,6 +360,19 @@
   }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+  const fadeEls = document.querySelectorAll('.fade-in-on-scroll');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  fadeEls.forEach(el => observer.observe(el));
+</script>
 
   
   <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm text-gray-600 text-center">
