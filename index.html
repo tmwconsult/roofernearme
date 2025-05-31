@@ -333,23 +333,34 @@
     fetch("https://script.google.com/macros/s/AKfycbxjIusxbbLum-2gUW1ATvN7OL3K_mn-HodVT683rxDvLeUu5M7MSrI-5NJ67ghYMbVWMA/exec", {
       method: 'POST',
       body: data
-    }).then(response => {
-      document.getElementById('quote-form').innerHTML = `$1`;
-launchConfetti();
+    }).then(() => {
+      document.getElementById('quote-form').innerHTML = `
+        <div class="text-center p-8 bg-white rounded-lg shadow-md fade-in-on-scroll">
+          <svg class="mx-auto mb-4 w-16 h-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <h2 class="text-2xl font-bold mb-2 text-green-600">Thanks for submitting!</h2>
+          <p class="text-gray-700 mb-4">Your roof report request is being reviewed. One of our trusted Alberta contractors will follow up within 24 hours.</p>
+          <p class="text-sm text-gray-500 italic mb-6">We appreciate the opportunity to help protect your home.</p>
+          <div class="bg-slate-50 p-4 rounded-lg">
+            <p class="text-sm text-gray-700 mb-2 font-semibold">🎁 Invite a friend and get a gift card when they book an inspection!</p>
+            <input type="text" readonly onclick="this.select()" class="w-full text-sm border px-2 py-1 rounded bg-white text-gray-600 cursor-pointer" value="https://roofinspections.ca/referral?code=FRIEND-BONUS">
+          </div>
+        </div>`;
+      launchConfetti();
 
-// Observe the new fade-in content
-const thankYouEl = document.querySelector('.fade-in-on-scroll');
-if (thankYouEl) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+      const thankYouEl = document.querySelector('.fade-in-on-scroll');
+      if (thankYouEl) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.2 });
+
+        observer.observe(thankYouEl);
       }
-    });
-  }, { threshold: 0.2 });
-
-  observer.observe(thankYouEl);
-}
     }).catch(error => {
       alert('There was an issue with your submission. Please try again.');
     });
@@ -389,35 +400,10 @@ if (thankYouEl) {
   fadeEls.forEach(el => observer.observe(el));
 </script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-<script>
-  const fadeEls = document.querySelectorAll('.fade-in-on-scroll');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.2 });
-
-  fadeEls.forEach(el => observer.observe(el));
-</script>
-
-  
-  <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm text-gray-600 text-center">
-    <span>✅ Licensed & Insured</span>
-    <span>⭐ 4.9 Rated by Homeowners</span>
-    <span>📍 Serving Calgary, Edmonton, Red Deer</span>
-  </div>
-
-</section>
-
-
 <footer>
   © 2025 RooferNear.me. Powered by BuildMaster.
 </footer>
+
 
 </body>
 </html>
